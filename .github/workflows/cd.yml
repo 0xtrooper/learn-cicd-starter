@@ -40,7 +40,7 @@ jobs:
         with:
           project_id: ${{ env.PROJECT_ID }}
           
-      - name: Build & push image (Cloud Build)
+      - name: Build & push image
         env:
           IMAGE_URI: ${{ vars.REGION }}-docker.pkg.dev/${{ vars.PROJECT_ID }}/${{ vars.REPOSITORY }}/${{ vars.IMAGE }}:${{ github.sha }}
         run: gcloud builds submit --tag "$IMAGE_URI" .
