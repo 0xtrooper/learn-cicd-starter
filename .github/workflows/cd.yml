@@ -39,8 +39,8 @@ jobs:
         uses: google-github-actions/setup-gcloud@v2
         with:
           project_id: ${{ env.PROJECT_ID }}
-
+          
       - name: Build & push image (Cloud Build)
-        run: |
-          IMAGE_URI="${REGION}-docker.pkg.dev/${PROJECT_ID}/${REPOSITORY}/${IMAGE}:${GITHUB_SHA}"
-          gcloud builds submit --tag "${IMAGE_URI}" .
+        env:
+          IMAGE_URI: ${{ vars.REGION }}-docker.pkg.dev/${{ vars.PROJECT_ID }}/${{ vars.REPOSITORY }}/${{ vars.IMAGE }}:${{ github.sha }}
+        run: gcloud builds submit --tag "$IMAGE_URI" .
