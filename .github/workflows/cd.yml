@@ -29,7 +29,7 @@ jobs:
         run: |
           chmod +x scripts/buildprod.sh
           ./scripts/buildprod.sh
-          
+
       - id: auth
         uses: google-github-actions/auth@v2
         with:
@@ -42,4 +42,4 @@ jobs:
         run: gcloud info
 
       - name: Build and push Docker image
-        run: gcloud builds submit --tag REGION-docker.pkg.dev/PROJECT_ID/REPOSITORY/IMAGE:TAG .
+        run: gcloud builds submit --tag us-central1-docker.pkg.dev/notely-483712/learn-cicd-starter/notely:prod
